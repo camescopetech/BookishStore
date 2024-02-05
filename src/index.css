@@ -1,0 +1,42 @@
+ .header{
+    background-color: aqua;
+    height: 10vh;
+}
+/*.rightMenu{
+
+}*/
+.leftMenu{
+    height: 80vh;
+    background-color: rosybrown;
+    float: left;
+}
+.mainContent{
+    background-color: antiquewhite;
+    height: 80vh;
+
+}
+.footer{
+    background-color: aqua;
+    height: 10vh;
+}
+
+.headerDiv{
+    display: inline-block;
+}
+
+.productTable{
+    text-align: center;
+}
+
+.navbar-nav {
+    margin: auto;
+}
+
+.nav-link {
+    margin-left: 30px;
+    font-weight: bold;
+    color: black;
+    transition: 0.5s ease;
+    cursor: pointer;
+    display: inline-block;
+}
