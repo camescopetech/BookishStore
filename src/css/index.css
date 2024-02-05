@@ -27,6 +27,10 @@
 .productTable{
     text-align: center;
 }
+.imgProduct{
+    max-width: 200px;
+    max-height: 200px;
+}
 
 .navbar-nav {
     margin: auto;

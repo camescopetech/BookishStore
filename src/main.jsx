@@ -6,7 +6,7 @@ import Category from "./category";
 import Footer from './footer';
 import LeftMenu from './leftMenu';
 import siteNavBar from './siteNavBar';
-import "./index.css";
+import "./css/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 /*
@@ -38,7 +38,7 @@ class Header extends React.Component{
         return <div>
             <div className="header">
                 <div className="headerDiv">
-                    <h1>Wonkaaa</h1>
+                    <h1>BookishStore</h1>
                 </div>
                 <div className="headerDiv">
                     <nav className="navbar navbar-expand-md">
