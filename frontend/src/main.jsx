@@ -64,29 +64,9 @@ class Header extends React.Component{
                     </nav>
                 </div>
             </div>
-            <div>
-                <div className='leftMenu'>
-                    <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={() => this.changeMain(<Accueil />)}>Accueil</a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={() => this.changeMain(<Category idCategory="0" />)}>Cat0</a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={() => this.changeMain(<Category idCategory="1" />)}>Cat1</a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={() => this.changeMain(<Category idCategory="2" />)}>Cat2</a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={() => this.changeMain(<Contact />)}>Contact</a>
-                            </li>
-                        </ul>
-                </div>
-                <div className='mainContent'>
+            <div className='mainContent'>
                 {this.state.mainContent}
-                </div>
+
             </div>
             <div className="footer">
                 <Footer/>
@@ -96,6 +76,7 @@ class Header extends React.Component{
     
 }
   
+export default Header;
 /*ReactDOM.render(
 <Header/>, 
 document.querySelector('#app')

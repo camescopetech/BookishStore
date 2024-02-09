@@ -1,25 +1,49 @@
- .header{
-    background-color: aqua;
+/*color*/
+:root {
+    --color0:#F4F1DE;
+    --color1:#E07A5F;
+    --color2:#3D405B;
+    --color3:#81B29A;
+    --color4:#F2CC8F;
+}
+/*Haeder*/
+.header{
+    background-color: var(--color1);
     height: 10vh;
 }
-/*.rightMenu{
-
-}*/
+/*LeftMenu*/
 .leftMenu{
     height: 80vh;
-    background-color: rosybrown;
+    background-color: var(--color1);
     float: left;
 }
+/*Main*/
 .mainContent{
-    background-color: antiquewhite;
+    background-color: var(--color0);
     height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
+/*footer*/
 .footer{
-    background-color: aqua;
+    background-color: var(--color2);
     height: 10vh;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
+.footerAbout{
+    color: var(--color0);
+    display: inline-block;
+    margin-left: 25px;
+}
+.footerLogo{
+    height: 50px;
+}
+/**/
 .headerDiv{
     display: inline-block;
 }
