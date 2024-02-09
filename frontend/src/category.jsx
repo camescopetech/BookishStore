@@ -47,17 +47,16 @@ function ProductTable({idCategory}){
         .catch(err => console.log(err));
     },[])
 
-    return <table>
-        <tbody>
+    return <div>
            <DisplayProduct products={data}/>
-        </tbody>
-    </table>
+        </div> 
+
 }
 
 class Category extends React.Component{
 
     render(){
-        return <div className="productTable">
+        return <div>
             <ProductTable idCategory="fantastic"/>
         </div>
     }

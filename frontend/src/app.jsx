@@ -1,27 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from 'react-dom/client';
-import Header from './header.jsx'
-import Footer from "./footer.jsx";
+import Accueil from "./accueil";
+import Header from "./header";
+import Footer from "./footer";
 
 function App() {
-    
-    const [mainContent, setMainContent] = useState(null);
+
+    const [mainContent, setMainContent] = useState(<Accueil />);
 
     const changeMainContent = (content) => {
         setMainContent(content);
     };
 
-    return (
-        <div>
-            <Header changeMain/>
-            <div className='mainContent'>
-                    {this.state.mainContent}
-            </div>
-            <div className="footer">
-                <Footer/>
-            </div>
-        </div>   
-);
+    return <div>
+            <Header changeMain={changeMainContent}/>
+            <div className="mainContent">
+                {mainContent}
+                
+            </div>  
+            <Footer/>
+
+    </div>
+    
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

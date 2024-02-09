@@ -9,30 +9,11 @@ import siteNavBar from './siteNavBar';
 import "./css/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-/*
-class ContentLink extends React.Component{
-
-    render(){
-        return  <li>
-            <a href="#" onClick={() => this.changeMain(this.props.content)}>{this.props.name}</a>
-        </li>
-   
-    }
-}*/
-
 class Header extends React.Component{
 
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-          mainContent: <Accueil/>,
-        };
-    }
-    
-    changeMain(balise) {
-    this.setState({ mainContent: balise });
-    }
+    changeMain = (balise) => {
+        this.props.changeMain(balise);
+    };
     
     render(){
         return <div>
@@ -64,26 +45,9 @@ class Header extends React.Component{
                     </nav>
                 </div>
             </div>
-            <div className='mainContent'>
-                {this.state.mainContent}
-
-            </div>
-            <div className="footer">
-                <Footer/>
-            </div> 
         </div>
     }
     
 }
   
 export default Header;
-/*ReactDOM.render(
-<Header/>, 
-document.querySelector('#app')
-)*/
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <Header/>
-    </React.StrictMode>
-)
