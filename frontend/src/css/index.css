@@ -6,16 +6,36 @@
     --color3:#81B29A;
     --color4:#F2CC8F;
 }
+/*body{
+    font-family: Cambria, sans-serif;
+    font-family: Georgia, Times New Roman, serif;
+}*/
 /*Haeder*/
 .header{
-    background-color: var(--color1);
     height: 10vh;
+    background-color: var(--color1);
+    font-family: Cambria, sans-serif;
+    text-align: center;
+    
+}
+.headerSiteName{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+.headerLogo{
+    height: 50px;
 }
 /*LeftMenu*/
 .leftMenu{
     height: 80vh;
-    background-color: var(--color1);
+    background-color: var(--color3);
+    font-family: Cambria, sans-serif;
     float: left;
+}
+.leftMenuLink{
+    text-decoration: none;
+    color: black;
 }
 /*Main*/
 .mainContent{
@@ -44,9 +64,6 @@
     height: 50px;
 }
 /**/
-.headerDiv{
-    display: inline-block;
-}
 
 .productTable{
     text-align: center;
@@ -54,17 +71,4 @@
 .imgProduct{
     max-width: 200px;
     max-height: 200px;
-}
-
-.navbar-nav {
-    margin: auto;
-}
-
-.nav-link {
-    margin-left: 30px;
-    font-weight: bold;
-    color: black;
-    transition: 0.5s ease;
-    cursor: pointer;
-    display: inline-block;
 }
