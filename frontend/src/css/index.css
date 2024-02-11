@@ -6,10 +6,9 @@
     --color3:#81B29A;
     --color4:#F2CC8F;
 }
-/*body{
-    font-family: Cambria, sans-serif;
-    font-family: Georgia, Times New Roman, serif;
-}*/
+body {
+    overflow: hidden;
+}
 /*Haeder*/
 .header{
     height: 10vh;
@@ -26,6 +25,10 @@
 .headerLogo{
     height: 50px;
 }
+.headerNavBar{
+    display: inline-block;
+}
+
 /*LeftMenu*/
 .leftMenu{
     height: 80vh;
@@ -71,4 +74,11 @@
 .imgProduct{
     max-width: 200px;
     max-height: 200px;
+}
+.arrow{
+    text-align: center;
+}
+.arrowButton{
+    border: none;
+    background-color: transparent;
 }

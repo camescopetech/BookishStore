@@ -30,19 +30,57 @@ function DisplayProduct({ products }) {
     );
 }
 
-function ProductTable({idCategory}){
+function ProductTable({search,idCategory}){
 
     const[data,setData] = useState([])
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 6;
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    
     useEffect(() => {
-        fetch('http://localhost:8081/product/' + idCategory)
-        .then(res => res.json())
-        .then(data =>  setData(data))
-        .catch(err => console.log(err));
-    },[idCategory])
+
+        let url;
+        if (search) {
+            url = `http://localhost:8081/productSearch/${search}`;
+        } else if (idCategory) {
+            url = `http://localhost:8081/product/${idCategory}`;
+        }
+
+        if(url){
+            fetch(url)
+            .then(res => res.json())
+            .then(data =>  setData(data))
+            .catch(err => console.log(err));
+        }
+    },[search,idCategory])
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
 
     return <div>
-           <DisplayProduct products={data}/>
-        </div> 
+        {data.length === 0 || data.error ? (
+            <div>Pas de resultat</div>         
+        ) : (
+            
+            <div>
+                <DisplayProduct products={data.slice(currentPage*itemsPerPage,(currentPage + 1)*itemsPerPage)}/>
+                <div className="arrow">
+                        {currentPage > 0 && (
+                            <button onClick={handlePrevPage} className="arrowButton">&lt;</button>
+                        )}
+                        <span>{currentPage + 1} / {totalPages}</span>
+                        {currentPage < totalPages - 1 && (
+                            <button onClick={handleNextPage} className="arrowButton">&gt;</button>
+                        )}
+                </div>
+            </div> 
+        )}     
+    </div> 
 
 }
 
@@ -50,7 +88,7 @@ class Category extends React.Component{
 
     render(){
         return <div>
-            <ProductTable idCategory={this.props.idCategory}/>
+            <ProductTable key={this.props.idCategory + this.props.search} idCategory={this.props.idCategory} search={this.props.search}/>
         </div>
     }
 }
