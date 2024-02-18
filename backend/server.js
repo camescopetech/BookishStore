@@ -82,21 +82,21 @@ app.get('/getProduct', (req, res) => {
     if(title){
         partTarget = addToPartTarget('product_name',title,partTarget);
     }
-    else{
+    else if(search){
         partSearch = addToPartSearch('product_name',search,partSearch)
     }
 
     if(author){
         partTarget = addToPartTarget('product_author',author,partTarget);
     }
-    else{
+    else if(search){
         partSearch = addToPartSearch('product_author',search,partSearch)
     }
 
     if(category){
         partTarget = addToPartTarget('product_category',category,partTarget);
     }
-    else{
+    else if(search){
         partSearch = addToPartSearch('product_category',search,partSearch)
     }
 

@@ -4,10 +4,11 @@ function ProductCard({ product }) {
     return (
         <div className="card h-100 d-flex flex-row align-items-center justify-content-center text-center" >
             <a href="">
-                <img className="imgProduct" src={product.product_img} alt={product.product_name} />
+                <img className="imgProduct" src={"/src/img/book.jpg"} alt={product.product_img} />
             </a>
             <div className="card-body">
                 <h5 className="card-title">{product.product_name}</h5>
+                <p className="card-text">{product.product_author}</p>
                 <p className="card-text">{product.product_desc}</p>
                 <p className="card-text">{product.product_price} €</p>
                 <div>
@@ -30,7 +31,7 @@ function DisplayProduct({ products }) {
     );
 }
 
-function ProductTable({search,idCategory}){
+function ProductTable({category,search}){
 
     const[data,setData] = useState([])
     const [currentPage, setCurrentPage] = useState(0);
@@ -39,20 +40,14 @@ function ProductTable({search,idCategory}){
     
     useEffect(() => {
 
-        let url;
-        if (search) {
-            url = `http://localhost:8081/productSearch/${search}`;
-        } else if (idCategory) {
-            url = `http://localhost:8081/product/${idCategory}`;
-        }
-
+        let url = 'http://localhost:8081/getProduct?category=' + category + '&search=' + search;
         if(url){
             fetch(url)
             .then(res => res.json())
             .then(data =>  setData(data))
             .catch(err => console.log(err));
         }
-    },[search,idCategory])
+    },[category,search])
 
     const handleNextPage = () => {
         setCurrentPage(currentPage + 1);
@@ -88,7 +83,7 @@ class Category extends React.Component{
 
     render(){
         return <div>
-            <ProductTable key={this.props.idCategory + this.props.search} idCategory={this.props.idCategory} search={this.props.search}/>
+            <ProductTable key={this.props.category + this.props.search} category={this.props.category} search={this.props.search}/>
         </div>
     }
 }

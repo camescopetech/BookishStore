@@ -20,9 +20,13 @@ class Header extends React.Component{
         this.props.changeMain(balise);
     };
 
+    changeSearch = (search) => {
+        this.props.changeSearch(search);
+    }
+
     handleFilterTextChange(e){
         this.setState({ filterText: e.target.value });
-        this.changeMain(<Category search={e.target.value}/>)
+        this.changeSearch(e.target.value)
     }
 
     render(){
