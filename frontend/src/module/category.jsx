@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { URL_API} from '../constantes';
 
 function ProductCard({ product }) {
     return (
@@ -31,7 +32,7 @@ function DisplayProduct({ products }) {
     );
 }
 
-function ProductTable({category,search}){
+function ProductTable({category,search, author}){
 
     const[data,setData] = useState([])
     const [currentPage, setCurrentPage] = useState(0);
@@ -40,7 +41,8 @@ function ProductTable({category,search}){
     
     useEffect(() => {
 
-        let url = 'http://localhost:8081/getProduct?category=' + category + '&search=' + search;
+        let url = URL_API + 'getProduct?category=' + category + '&search=' + search + '&author=' + author;
+        console.log(url);
         if(url){
             fetch(url)
             .then(res => res.json())
@@ -83,7 +85,10 @@ class Category extends React.Component{
 
     render(){
         return <div>
-            <ProductTable key={this.props.category + this.props.search} category={this.props.category} search={this.props.search}/>
+            <ProductTable key={this.props.category + this.props.search + this.props.author} 
+            category={this.props.category} 
+            search={this.props.search} 
+            author={this.props.author}/>
         </div>
     }
 }

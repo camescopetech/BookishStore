@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./css/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
-import Accueil from "./accueil";
-import Header from "./header";
-import Footer from "./footer";
-import LeftMenu from "./leftMenu";
-import Category from "./category";
+import Accueil from "./module/accueil";
+import Header from "./module/header";
+import Footer from "./module/footer";
+import LeftMenu from "./module/leftMenu";
+import Category from "./module/category";
 
 function App() {
     const [mainContent, setMainContent] = useState(<Accueil />);
@@ -23,28 +23,31 @@ function App() {
 
     const changeCategory = (newCategory) => {
         setCategory(newCategory);
-        changeMainContent(<Category category={newCategory} search={search}/>)
+        changeMainContent(<Category category={newCategory} search={search} author={author}/>)
     };
 
     const changeSearch = (newSearch) => {
         setSearch(newSearch);
-        changeMainContent(<Category category={category} search={newSearch}/>)
+        changeMainContent(<Category category={category} search={newSearch} author={author}/>)
     };
+
+    const changeAuthor = (newAuthor) => {
+        setAuthor(newAuthor);
+        changeMainContent(<Category category={category} search={search} author={newAuthor}/>)
+    };
+
 
     /*<div>
         <p>title = {title}, author={author}, category = {category}, search = {search}, vTrie = {vTrie}</p>
     </div>*/
     return (
         <div>
-            <div>
-                <p>title = {title}, author={author}, category = {category}, search = {search}, vTrie = {vTrie}</p>
-            </div>
             <Header changeMain={changeMainContent} changeSearch={changeSearch}/>
-            <LeftMenu changeCategory={changeCategory} />
+            <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor}/>
             <div className="mainContent">
                 {mainContent}
             </div>
-            <Footer/>
+            <Footer changeMain={changeMainContent}/>
 
         </div>
     );

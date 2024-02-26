@@ -1,8 +1,6 @@
-import React, {setState} from 'react';
-import Contact from "./contact";
+import React, {setState,useState,useEffect} from 'react';
 import Accueil from "./accueil";
-import Category from "./category";
-import "./css/index.css";
+import "../css/index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Header extends React.Component{

@@ -16,43 +16,6 @@ app.get('/', (re,res) => {
     return res.json("From Backend Side");
 })
 
-/*app.get('/product/', (req,res) => {
-    const sql = "SELECT * FROM bookish_product";
-    db.query(sql, (err, data)=>{
-        if(err) return res.json(err);
-        return res.json(data);
-    })
-})*/
-
-app.get('/product/:category', (req, res) => {
-    const category = req.params.category;
-    const sql = "SELECT * FROM bookish_product WHERE product_category = ?";
-    db.query(sql, [category], (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: 'Internal server error' });
-        }
-        if (data.length === 0) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
-        return res.json(data);
-    });
-});
-
-app.get('/productSearch/:search', (req, res) => {
-    const search = '%' + req.params.search + '%';
-    const sql = "SELECT * FROM bookish_product WHERE product_category LIKE ? OR product_name LIKE ?";
-    console.log(sql);
-    db.query(sql, [search,search], (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: 'Internal server error' });
-        }
-        if (data.length === 0) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
-        return res.json(data);
-    });
-});
-
 //Exemple: /getProduct?vTrie=value&auteur=value&category=value&search=value
 app.get('/getProduct', (req, res) => {
 
@@ -102,7 +65,10 @@ app.get('/getProduct', (req, res) => {
 
     var sql = "SELECT * FROM bookish_product WHERE " + partTarget;
     if(partSearch != ''){
-        sql += "AND (" + partSearch + ")"
+        if(partTarget != ''){
+            sql += "AND "
+        }
+        sql += "(" + partSearch + ")"
     }
 
     console.log(sql);
@@ -117,6 +83,26 @@ app.get('/getProduct', (req, res) => {
     });
    
   });
+
+app.get('/getListElement', (req, res) => {
+
+    var { type } = req.query;
+
+    var sql = 'SELECT DISTINCT ' + type + ' AS name FROM bookish_product ORDER BY ' + type;
+
+    console.log(sql);
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (data.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        return res.json(data);
+    });
+   
+  });
+
 
 app.listen(8081, () => {
     console.log("listening");
