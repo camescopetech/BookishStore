@@ -14,6 +14,14 @@ CREATE TABLE bookish_product (
     PRIMARY KEY(id_product)
 );
 
+CREATE TABLE bookish_user (
+    id_user INT AUTO_INCREMENT,
+    user_name VARCHAR(30),
+    user_email VARCHAR(30),
+    user_password VARCHAR(30),
+    PRIMARY KEY(id_user)
+);
+
 INSERT INTO bookish_product (product_name, product_author, product_price, product_category, product_stock, product_desc, product_img) VALUES
     ('Livre A', 'François', 19.99, 'fantastic', 50, 'Description du Livre A', 'livreA.jpg'),
     ('Livre B', 'François',29.99, 'fantastic', 30, 'Description du Livre B', 'livreB.jpg'),
@@ -31,5 +39,6 @@ INSERT INTO bookish_product (product_name, product_author, product_price, produc
     ('Livre N', 'Sylvie', 149.99, 'historical', 12, 'Description du Livre N', 'livreN.jpg'),
     ('Livre O', 'Sylvie', 159.99, 'historical', 8, 'Description du Livre O', 'livreO.jpg');
 
-
+INSERT INTO bookish_user (user_name,user_email,user_password) VALUES
+    ('Azek','azek@gmail.com','sasa');
     

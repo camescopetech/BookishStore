@@ -101,7 +101,28 @@ app.get('/getListElement', (req, res) => {
         return res.json(data);
     });
    
-  });
+});
+
+app.get('/getConnexion', (req, res) => {
+
+    var { email, password } = req.query;
+
+    var sql = "SELECT * FROM bookish_user WHERE user_email = '" + email + "' AND user_password = '" + password + "'";
+
+    console.log(sql);
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (data.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        return res.json(data);
+        
+    });
+   
+});
 
 
 app.listen(8081, () => {

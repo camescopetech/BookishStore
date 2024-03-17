@@ -14,8 +14,9 @@ body {
     height: 10vh;
     background-color: var(--color1);
     font-family: Cambria, sans-serif;
-    text-align: center;
-    
+    text-align: center;  
+    justify-content: center;
+    align-items: center;
 }
 .headerSiteName{
     text-decoration: none;

@@ -20,18 +20,6 @@ class LeftMenu extends React.Component {
         this.props.changeCategory(selectedCategory);
     }
     
-    /*
-    changeCategory = (category) => {    
-        this.props.changeCategory(category);
-    }
-    <strong>Genres</strong>
-    <ul>
-        <li><a href="#" className="leftMenuLink" onClick={() => this.changeCategory("fantastic")}>Fantastique</a></li>
-        <li><a href="#" className="leftMenuLink" onClick={() => this.changeCategory("romance")}>Romance</a></li>
-        <li><a href="#" className="leftMenuLink" onClick={() => this.changeCategory("adventure")}>Aventure</a></li>
-        <li><a href="#" className="leftMenuLink" onClick={() => this.changeCategory("historical")}>Historique</a></li>
-    </ul>
-    */
     render() {
         return (
             <div className="leftMenu">
