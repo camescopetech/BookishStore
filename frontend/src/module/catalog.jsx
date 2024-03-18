@@ -37,14 +37,14 @@ function DisplayProduct({ products, onViewMore }) {
     );
 }
 
-function ProductTable({ category, search, author, onViewMore }) {
+function ProductTable({ category, search, author, sort, onViewMore }) {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 6;
     const totalPages = Math.ceil(data.length / itemsPerPage);
 
     useEffect(() => {
-        let url = URL_API + 'getProduct?category=' + category + '&search=' + search + '&author=' + author;
+        let url = URL_API + 'getProductsList?category=' + category + '&search=' + search + '&author=' + author + '&sort=' + sort;
         console.log(url);
         if (url) {
             fetch(url)
@@ -96,10 +96,11 @@ class Category extends React.Component {
         return (
             <div>
                 <ProductTable
-                    key={this.props.category + this.props.search + this.props.author}
+                    key={this.props.category + this.props.search + this.props.author + this.props.sort}
                     category={this.props.category}
                     search={this.props.search}
                     author={this.props.author}
+                    sort={this.props.sort}
                     onViewMore={this.changeMain}
                 />
             </div>

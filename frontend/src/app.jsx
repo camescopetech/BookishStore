@@ -8,6 +8,7 @@ import Footer from "./module/footer";
 import LeftMenu from "./module/leftMenu";
 import Category from "./module/catalog";
 import Connexion from "./module/connexion";
+import SignUpForm from "./module/signUpForm";
 
 function App() {
     const [mainContent, setMainContent] = useState(<Accueil />);
@@ -15,7 +16,7 @@ function App() {
     const [author, setAuthor] = useState('');
     const [category, setCategory] = useState('');
     const [search, setSearch] = useState('');
-    const [vTrie, setVTrie] = useState('');
+    const [sort, setSort] = useState('');
     const [user, setUser] = useState('');
 
     const changeMainContent = (content) => {
@@ -24,36 +25,47 @@ function App() {
 
     const changeCategory = (newCategory) => {
         setCategory(newCategory);
-        changeMainContent(<Category category={newCategory} search={search} author={author} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={newCategory} search={search} author={author} sort={sort} changeMain={changeMainContent}/>)
     };
 
     const changeSearch = (newSearch) => {
         setSearch(newSearch);
-        changeMainContent(<Category category={category} search={newSearch} author={author} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={category} search={newSearch} author={author} sort={sort} changeMain={changeMainContent}/>)
     };
 
     const changeAuthor = (newAuthor) => {
         setAuthor(newAuthor);
-        changeMainContent(<Category category={category} search={search} author={newAuthor} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={category} search={search} author={newAuthor} sort={sort} changeMain={changeMainContent}/>)
     };
 
-    const changeMainToConnexion = (newUser) => {
-        changeMainContent(<Connexion changeUser={changeUser}/>);
+    const changeSort = (newSort) => {
+        setSort(newSort);
+        changeMainContent(<Category category={category} search={search} author={author} sort={newSort} changeMain={changeMainContent}/>)
     };
 
+    //USER
+    const changeMainToConnexion = () => {
+        changeMainContent(<Connexion changeUser={changeUser} changeMainToSignUp={changeMainToSignUp}/>);
+    };
+   
+    const  changeMainToSignUp = () => {
+        changeMainContent(<SignUpForm changeMainToConnexion={changeMainToConnexion}/>);
+    };
     const changeUser = (newUser) => {
-        changeMainContent(<Accueil/>)
+        changeMainContent(<Accueil/>);
         setUser(newUser);
     };
 
-    /*<div>
-        <p>title = {title}, author={author}, category = {category}, search = {search}, vTrie = {vTrie}</p>
-    </div>*/
+    const logoutUser = () => {
+        setUser('');
+    };
+
+
     return (
         <div>
        
-            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user}/>
-            <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor}/>
+            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} logoutUser={logoutUser}/>
+            <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
             <div className="mainContent">
                 {mainContent}
             </div>

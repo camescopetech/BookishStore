@@ -1,5 +1,6 @@
 import React from "react";
 import { URL_API } from '../constantes';
+import SignUpForm from "./signUpForm";
 
 class Connexion extends React.Component {
     
@@ -33,6 +34,7 @@ class Connexion extends React.Component {
                     if (!data) {
                         throw new Error('Invalid credentials');
                     }        
+                    
                     this.props.changeUser(data[0]); 
                 })
                 .catch(error => {
@@ -44,42 +46,56 @@ class Connexion extends React.Component {
 
     };
 
+    changeMainToSignUp = (event) => {
+       this.props. changeMainToSignUp(" changeMainToSignUp");
+    }
+
     render() {
         const { email, password, isConnected, error, userData } = this.state;
-
+    
         return (
             <div className="connexion">
-                <h2>Connexion</h2>
-            
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={this.handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Mot de passe:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={this.handleChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit">Se connecter</button>
-                </form>
-                
+                <table>
+                    <thead>
+                        <tr>
+                            <th colSpan="2"><h2>Connexion</h2></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label htmlFor="email">Email:</label></td>
+                            <td>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label htmlFor="password">Mot de passe:</label></td>
+                            <td>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit" onClick={this.handleSubmit}>Se connecter</button>
+                <button type="submit" onClick={this.changeMainToSignUp}>Creer un compte</button>
             </div>
         );
     }
+    
 }
 
 export default Connexion;

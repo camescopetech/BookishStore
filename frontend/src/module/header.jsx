@@ -1,11 +1,15 @@
 import React from 'react';
+import Accueil from './accueil';
 
-function DivUser({ user, changeMainToConnexion }) {
+function DivUser({ user, changeMainToConnexion, logoutUser }) {
     console.log("reload " + user);
    if (!user) {
-        return <p onClick={changeMainToConnexion} className='headerSiteName'>Connexion</p>
+        return <button onClick={changeMainToConnexion} className='headerSiteName'>Connexion</button>
    } else {
-        return  <p className='headerSiteName'>{user.user_name}</p>
+        return  <div>
+            <p className='headerSiteName'>{user.user_name}</p>
+            <button onClick={logoutUser} className='headerSiteName'>Deconnexion</button>
+        </div>
    }
 }
 
@@ -24,11 +28,15 @@ class Header extends React.Component {
     };
 
     changeMainToConnexion = () => {
-        this.props.changeMainToConnexion("go");
+        this.props.changeMainToConnexion("changeMainToConnexion");
     }
 
     changeSearch = (search) => {
         this.props.changeSearch(search);
+    }
+
+    logoutUser = () => {
+        this.props.logoutUser("logoutUser")
     }
 
     handleFilterTextChange(e) {
@@ -39,10 +47,12 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <img src="src/img/logo.jpeg" alt="logo" className="headerLogo" />
-                <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
+                <div className="headerSite">
+                    <img src="src/img/logo.jpeg" alt="logo" className="headerLogo" />
+                    <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
+                </div>
                 <input type="text" value={this.state.filterText} placeholder="Search" onChange={this.handleFilterTextChange}/>
-                <DivUser user={this.props.user} changeMainToConnexion={this.changeMainToConnexion}/>
+                <DivUser className="headerUser" user={this.props.user} changeMainToConnexion={this.changeMainToConnexion} logoutUser={this.logoutUser}/>
             </div>
         );
     }

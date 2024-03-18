@@ -17,12 +17,13 @@ app.get('/', (re,res) => {
 })
 
 //Exemple: /getProduct?vTrie=value&auteur=value&category=value&search=value
-app.get('/getProduct', (req, res) => {
+app.get('/getProductsList', (req, res) => {
 
-    var { title ,author, category, search,vTrie } = req.query;
+    var { title ,author, category, search, sort } = req.query;
     
     var partTarget = '';
     var partSearch = '';
+    var sql = "SELECT * FROM bookish_product "
 
     function addToPartTarget(column,value,partTarget){
 
@@ -42,33 +43,49 @@ app.get('/getProduct', (req, res) => {
         return partSearch
     }
 
-    if(title){
-        partTarget = addToPartTarget('product_name',title,partTarget);
-    }
-    else if(search){
-        partSearch = addToPartSearch('product_name',search,partSearch)
-    }
-
-    if(author){
-        partTarget = addToPartTarget('product_author',author,partTarget);
-    }
-    else if(search){
-        partSearch = addToPartSearch('product_author',search,partSearch)
-    }
-
-    if(category){
-        partTarget = addToPartTarget('product_category',category,partTarget);
-    }
-    else if(search){
-        partSearch = addToPartSearch('product_category',search,partSearch)
-    }
-
-    var sql = "SELECT * FROM bookish_product WHERE " + partTarget;
-    if(partSearch != ''){
-        if(partTarget != ''){
-            sql += "AND "
+    if( author || category || search){
+         /*if(title){
+            partTarget = addToPartTarget('product_name',title,partTarget);
         }
-        sql += "(" + partSearch + ")"
+        else if(search){
+            partSearch = addToPartSearch('product_name',search,partSearch)
+        }*/
+
+        if(author){
+            partTarget = addToPartTarget('product_author',author,partTarget);
+        }
+        else if(search){
+            partSearch = addToPartSearch('product_author',search,partSearch)
+        }
+
+        if(category){
+            partTarget = addToPartTarget('product_category',category,partTarget);
+        }
+        else if(search){
+            partSearch = addToPartSearch('product_category',search,partSearch)
+        }
+
+        sql += "WHERE " + partTarget;
+        if(partSearch != ''){
+            if(partTarget != ''){
+                sql += "AND "
+            }
+            sql += "(" + partSearch + ")"
+        }
+    }
+
+    switch (sort){
+        case '1':
+            sql += "ORDER BY product_price"
+            break;
+        case '2':
+            sql += "ORDER BY product_author"
+            break;
+        case '3':
+            sql += "ORDER BY product_name"
+            break;
+        default:
+            break;   
     }
 
     console.log(sql);
@@ -104,26 +121,44 @@ app.get('/getListElement', (req, res) => {
 });
 
 app.get('/getConnexion', (req, res) => {
-
     var { email, password } = req.query;
 
-    var sql = "SELECT * FROM bookish_user WHERE user_email = '" + email + "' AND user_password = '" + password + "'";
-
-    console.log(sql);
-    db.query(sql, (err, data) => {
+    var sql = "SELECT * FROM bookish_user WHERE user_email = ? AND user_password = ?";
+    db.query(sql, [email, password], (err, data) => {
         if (err) {
             return res.status(500).json({ error: 'Internal server error' });
         }
         if (data.length === 0) {
-            return res.status(404).json({ error: 'Product not found' });
+            return res.status(404).json({ error: 'User not found' });
         }
-
-        return res.json(data);
-        
+        res.json(data);
     });
-   
 });
 
+
+app.get('/signUp', (req, res) => {
+    var { email, password, name } = req.query;
+
+    // Vérifier si un utilisateur avec le même nom existe déjà
+    var sqlCheckName = "SELECT * FROM bookish_user WHERE user_name = ? OR user_email = ?";
+    db.query(sqlCheckName, [name, email], (err, nameData) => {
+        if (err) {
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (nameData.length > 0) {
+            return res.json({ success: false, message: 'User with the same name already exists' });
+        }
+
+        // Si aucun utilisateur avec le même nom n'existe, insérer les données
+        var sqlInsert = "INSERT INTO bookish_user (user_name, user_email, user_password) VALUES (?, ?, ?)";
+        db.query(sqlInsert, [name, email, password], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: 'Internal server error' });
+            }
+            res.json({ success: true, message: 'User created successfully' });
+        });
+    });
+});
 
 app.listen(8081, () => {
     console.log("listening");

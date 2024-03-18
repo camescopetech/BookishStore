@@ -9,27 +9,35 @@
 body {
     overflow: hidden;
 }
-/*Haeder*/
-.header{
+/*Header*/
+.header {
     height: 10vh;
     background-color: var(--color1);
     font-family: Cambria, sans-serif;
-    text-align: center;  
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.headerSite {
+    display: flex;
     align-items: center;
 }
-.headerSiteName{
+.headerSiteName {
     text-decoration: none;
     color: black;
-    display: inline-block;
+    margin-left: 10px; /* Ajoute un peu d'espace entre le logo et le texte du site */
 }
-.headerLogo{
+.headerLogo {
     height: 50px;
 }
-.headerNavBar{
-    display: inline-block;
+.headerNavBar {
+    flex-grow: 1;
+    margin: 0 10px; /* Ajouter un peu d'espace autour de la barre de recherche */
 }
-
+.headerUser {
+    margin-left: 10px; /* Ajouter un peu d'espace entre la barre de recherche et DivUser */
+}
 /*LeftMenu*/
 .leftMenu{
     height: 80vh;
