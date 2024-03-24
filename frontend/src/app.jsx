@@ -9,6 +9,7 @@ import LeftMenu from "./module/leftMenu";
 import Category from "./module/catalog";
 import Connexion from "./module/connexion";
 import SignUpForm from "./module/signUpForm";
+import Product from "./module/product";
 
 function App() {
     const [mainContent, setMainContent] = useState(<Accueil />);
@@ -18,6 +19,8 @@ function App() {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
     const [user, setUser] = useState('');
+    const [cart, setCart] = useState({'1': { nElement: 3 }});
+
 
     const changeMainContent = (content) => {
         setMainContent(content);
@@ -25,22 +28,22 @@ function App() {
 
     const changeCategory = (newCategory) => {
         setCategory(newCategory);
-        changeMainContent(<Category category={newCategory} search={search} author={author} sort={sort} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={newCategory} search={search} author={author} sort={sort} changeMain={changeMainToProduct}/>)
     };
 
     const changeSearch = (newSearch) => {
         setSearch(newSearch);
-        changeMainContent(<Category category={category} search={newSearch} author={author} sort={sort} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={category} search={newSearch} author={author} sort={sort} changeMain={changeMainToProduct}/>)
     };
 
     const changeAuthor = (newAuthor) => {
         setAuthor(newAuthor);
-        changeMainContent(<Category category={category} search={search} author={newAuthor} sort={sort} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={category} search={search} author={newAuthor} sort={sort} changeMain={changeMainToProduct}/>)
     };
 
     const changeSort = (newSort) => {
         setSort(newSort);
-        changeMainContent(<Category category={category} search={search} author={author} sort={newSort} changeMain={changeMainContent}/>)
+        changeMainContent(<Category category={category} search={search} author={author} sort={newSort} changeMain={changeMainToProduct}/>)
     };
 
     //USER
@@ -55,10 +58,13 @@ function App() {
         changeMainContent(<Accueil/>);
         setUser(newUser);
     };
-
     const logoutUser = () => {
         setUser('');
     };
+    //PRODUCT
+    const changeMainToProduct = (product) => {
+        changeMainContent(<Product product={product} cart={cart}/>);
+    }
 
 
     return (

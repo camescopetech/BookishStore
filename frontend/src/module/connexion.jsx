@@ -9,6 +9,7 @@ class Connexion extends React.Component {
         this.state = {
             email: '',
             password: '',
+            isCorrect: true
         };
     }
 
@@ -34,11 +35,12 @@ class Connexion extends React.Component {
                     if (!data) {
                         throw new Error('Invalid credentials');
                     }        
+
+                    this.props.changeUser(data[0]);            
                     
-                    this.props.changeUser(data[0]); 
                 })
                 .catch(error => {
-                    
+                    this.setState({ isCorrect: false});
                     
                 });
                 
@@ -51,7 +53,7 @@ class Connexion extends React.Component {
     }
 
     render() {
-        const { email, password, isConnected, error, userData } = this.state;
+        const { email, password, isCorrect } = this.state;
     
         return (
             <div className="connexion">
@@ -88,6 +90,7 @@ class Connexion extends React.Component {
                                 />
                             </td>
                         </tr>
+                        {!isCorrect && <tr><td colSpan="2" style={{ color: 'red' }}>L'adresse mail ou le mot de passe n'est pas correct</td></tr>}
                     </tbody>
                 </table>
                 <button type="submit" onClick={this.handleSubmit}>Se connecter</button>
