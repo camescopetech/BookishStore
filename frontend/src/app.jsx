@@ -10,6 +10,7 @@ import Category from "./module/catalog";
 import Connexion from "./module/connexion";
 import SignUpForm from "./module/signUpForm";
 import Product from "./module/product";
+import Cart from "./module/cart";
 
 function App() {
     const [mainContent, setMainContent] = useState(<Accueil />);
@@ -19,8 +20,7 @@ function App() {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
     const [user, setUser] = useState('');
-    const [cart, setCart] = useState({'1': { nElement: 3 }});
-
+    const [cart, setCart] = useState({});
 
     const changeMainContent = (content) => {
         setMainContent(content);
@@ -61,16 +61,18 @@ function App() {
     const logoutUser = () => {
         setUser('');
     };
-    //PRODUCT
+    //CHANGEMAIN
     const changeMainToProduct = (product) => {
         changeMainContent(<Product product={product} cart={cart}/>);
     }
-
+    const changeMainToCart = () => {
+        changeMainContent(<Cart cart={cart}/>)
+    }
 
     return (
         <div>
        
-            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} logoutUser={logoutUser}/>
+            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} logoutUser={logoutUser} changeMainToCart={changeMainToCart}/>
             <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
             <div className="mainContent">
                 {mainContent}
@@ -81,7 +83,7 @@ function App() {
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // Créer la racine une seule fois
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <App/>

@@ -91,3 +91,21 @@ body {
     border: none;
     background-color: transparent;
 }
+/*Product*/
+.product {
+    display: flex;
+    justify-content: space-between; /* Pour aligner les éléments à chaque extrémité */
+}
+
+.productImg {
+    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de son conteneur */
+}
+
+.productContent {
+    display: flex;
+    flex-grow: 1; /* Pour que le contenu prenne tout l'espace restant */
+}
+
+.productDetails {
+    margin-left: 20px; /* Espacement entre l'image et les détails */
+}

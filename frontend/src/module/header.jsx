@@ -1,5 +1,6 @@
 import React from 'react';
 import Accueil from './accueil';
+import Cart from './cart';
 
 function DivUser({ user, changeMainToConnexion, logoutUser }) {
     console.log("reload " + user);
@@ -30,13 +31,17 @@ class Header extends React.Component {
     changeMainToConnexion = () => {
         this.props.changeMainToConnexion("changeMainToConnexion");
     }
+    
+    changeMainToCart = () => {
+        this.props.changeMainToCart("changeMainToCart");
+    }
 
     changeSearch = (search) => {
         this.props.changeSearch(search);
     }
 
     logoutUser = () => {
-        this.props.logoutUser("logoutUser")
+        this.props.logoutUser("logoutUser");
     }
 
     handleFilterTextChange(e) {
@@ -52,6 +57,7 @@ class Header extends React.Component {
                     <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
                 </div>
                 <input type="text" value={this.state.filterText} placeholder="Search" onChange={this.handleFilterTextChange}/>
+                <p onClick={this.changeMainToCart}>panier</p>
                 <DivUser className="headerUser" user={this.props.user} changeMainToConnexion={this.changeMainToConnexion} logoutUser={this.logoutUser}/>
             </div>
         );
