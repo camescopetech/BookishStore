@@ -70,8 +70,7 @@ function App() {
     }
 
     return (
-        <div>
-       
+        <div className="appDiv">
             <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} logoutUser={logoutUser} changeMainToCart={changeMainToCart}/>
             <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
             <div className="mainContent">

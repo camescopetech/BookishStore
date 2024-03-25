@@ -1,97 +1,109 @@
-/*color*/
+/* Reset des marges et des paddings par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Définition des variables de couleur */
 :root {
-    --color0:#F4F1DE;
-    --color1:#E07A5F;
-    --color2:#3D405B;
-    --color3:#81B29A;
-    --color4:#F2CC8F;
+    --color0: #F4F1DE;
+    --color1: #E07A5F;
+    --color2: #3D405B;
+    --color3: #81B29A;
+    --color4: #F2CC8F;
 }
+
+/* Styles globaux */
 body {
-    overflow: hidden;
-}
-/*Header*/
-.header {
-    height: 10vh;
-    background-color: var(--color1);
     font-family: Cambria, sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    
 }
-.headerSite {
-    display: flex;
-    align-items: center;
+
+.appDiv{
+    background-color: #81B29A;
 }
-.headerSiteName {
-    text-decoration: none;
-    color: black;
-    margin-left: 10px; /* Ajoute un peu d'espace entre le logo et le texte du site */
-}
-.headerLogo {
-    height: 50px;
-}
-.headerNavBar {
-    flex-grow: 1;
-    margin: 0 10px; /* Ajouter un peu d'espace autour de la barre de recherche */
-}
-.headerUser {
-    margin-left: 10px; /* Ajouter un peu d'espace entre la barre de recherche et DivUser */
-}
-/*LeftMenu*/
-.leftMenu{
-    height: 80vh;
+
+/* Left Menu */
+.leftMenu {
+    min-height: calc(90vh - 10vh);
     background-color: var(--color3);
     font-family: Cambria, sans-serif;
     float: left;
 }
-.leftMenuLink{
+
+.leftMenuLink {
     text-decoration: none;
     color: black;
 }
-/*Main*/
-.mainContent{
+
+/* Main Content */
+.mainContent {
     background-color: var(--color0);
-    height: 80vh;
+    min-height: calc(90vh - 10vh); /* Utilisation de calc pour calculer la hauteur minimale de la zone principale */
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
-/*footer*/
-.footer{
+
+/* Footer */
+.footer {
     background-color: var(--color2);
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
-.footerAbout{
+
+.footerAbout {
     color: var(--color0);
     display: inline-block;
     margin-left: 25px;
 }
-.footerLogo{
+
+.footerLogo {
     height: 50px;
 }
-/**/
 
-/*Product*/
+/* Product */
 .product {
     display: flex;
-    justify-content: space-between; /* Pour aligner les éléments à chaque extrémité */
+    justify-content: space-between;
 }
 
 .productImg {
-    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de son conteneur */
+    max-width: 100%;
 }
 
 .productContent {
     display: flex;
-    flex-grow: 1; /* Pour que le contenu prenne tout l'espace restant */
+    flex-grow: 1;
+    margin-left: 20px;
 }
 
-.productDetails {
-    margin-left: 20px; /* Espacement entre l'image et les détails */
+/* Media Queries pour la responsivité */
+@media only screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .headerNavBar {
+        margin: 10px 0;
+    }
+
+    .leftMenu {
+        display: none;
+    }
+
+    .mainContent {
+        height: auto;
+        min-height: calc(90vh - 10vh); /* Ajout d'une hauteur minimale pour s'assurer que le contenu est visible */
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
 }

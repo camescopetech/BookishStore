@@ -9,9 +9,7 @@ function ProductCard({ product, onViewMore }) {
 
     return (
         <div className="cardProduct">
-            <a href="">
-                <img className="imgProduct" src={product.product_img} alt={product.product_img} />
-            </a>
+            <img className="imgProduct" src={product.product_img} alt={product.product_img} onClick={handleViewMore}/>
             <div className="cardBody">
                 <h5 className="card-title">{product.product_name}</h5>
                 <p className="card-text">{product.product_author}</p>

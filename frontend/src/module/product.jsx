@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/product.css";
 
 class Product extends React.Component {
     constructor(props) {
@@ -31,10 +32,10 @@ class Product extends React.Component {
         }
     }
 
+  
     render() {
         const product = this.props.product;
-
-        console.log(this.props.cart);
+        
         return (
             <div className="product">
                 <div className="productContent">
@@ -48,9 +49,13 @@ class Product extends React.Component {
                         <p><strong>Catégorie:</strong> {product.product_category}</p>
                         <p><strong>Stock:</strong> {product.product_stock}</p>
                         <p><strong>Description:</strong> {product.product_desc}</p>
-                        <button onClick={this.removeFromCart}>-</button>
-                        <span>{this.state.nElement}</span>
-                        <button onClick={this.addToCart}>+</button>
+                        <div className="quantityControl">
+                            <button onClick={this.removeFromCart} className="cartButton">-</button>
+                            <span>   </span>
+                            <span className="quantity">{this.state.nElement}</span>
+                            <span>   </span>
+                            <button onClick={this.addToCart} className="cartButton">+</button>
+                        </div>
                     </div>
                 </div>
             </div>

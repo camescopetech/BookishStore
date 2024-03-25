@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { URL_API } from '../constantes';
+import "../css/leftMenu.css";
 
 function ElementFilterList({ onChange, type, nameList }) {
     const [elements, setElements] = useState([]);
