@@ -77,20 +77,6 @@ body {
 }
 /**/
 
-.productTable{
-    text-align: center;
-}
-.imgProduct{
-    max-width: 200px;
-    max-height: 200px;
-}
-.arrow{
-    text-align: center;
-}
-.arrowButton{
-    border: none;
-    background-color: transparent;
-}
 /*Product*/
 .product {
     display: flex;

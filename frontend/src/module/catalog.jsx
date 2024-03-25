@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { URL_API } from '../constantes';
-import Product from "./product";
+import "../css/catalog.css";
 
 function ProductCard({ product, onViewMore }) {
     const handleViewMore = () => {
@@ -8,14 +8,14 @@ function ProductCard({ product, onViewMore }) {
     };
 
     return (
-        <div className="card h-100 d-flex flex-row align-items-center justify-content-center text-center">
+        <div className="cardProduct">
             <a href="">
-                <img className="imgProduct" src={"/src/img/book.jpg"} alt={product.product_img} />
+                <img className="imgProduct" src={product.product_img} alt={product.product_img} />
             </a>
-            <div className="card-body">
+            <div className="cardBody">
                 <h5 className="card-title">{product.product_name}</h5>
                 <p className="card-text">{product.product_author}</p>
-                <p className="card-text">{product.product_desc}</p>
+                <p className="card-text">{product.product_desc.substring(0, 50)} ...</p>
                 <p className="card-text">{product.product_price} €</p>
                 <div>
                     <button onClick={handleViewMore} className="btn btn-dark">Voir plus</button>
@@ -27,9 +27,9 @@ function ProductCard({ product, onViewMore }) {
 
 function DisplayProduct({ products, onViewMore }) {
     return (
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 productCards">
             {products.map((product, index) => (
-                <div key={index} className="col mb-4">
+                <div key={index} className="col mb-4 productItem">
                     <ProductCard product={product} onViewMore={onViewMore} />
                 </div>
             ))}
@@ -63,15 +63,21 @@ function ProductTable({ category, search, author, sort, onViewMore }) {
     };
 
     return (
-        <div>
+        <div className="full">
             {data.length === 0 || data.error ? (
                 <div>Pas de résultat</div>
             ) : (
-                <div>
-                    <DisplayProduct
-                        products={data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
-                        onViewMore={onViewMore}
-                    />
+                <div className="full">
+                 
+                    <div className="productTableContainer">
+                        <div className="productTable"> 
+                            <DisplayProduct
+                                products={data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
+                                onViewMore={onViewMore} 
+                            />
+                        </div>
+                    </div>
+
                     <div className="arrow">
                         {currentPage > 0 && (
                             <button onClick={handlePrevPage} className="arrowButton">&lt;</button>
@@ -95,7 +101,7 @@ class Category extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="full">
                 <ProductTable
                     key={this.props.category + this.props.search + this.props.author + this.props.sort}
                     category={this.props.category}
@@ -103,6 +109,7 @@ class Category extends React.Component {
                     author={this.props.author}
                     sort={this.props.sort}
                     onViewMore={this.changeMain}
+                    
                 />
             </div>
         );

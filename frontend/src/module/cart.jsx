@@ -20,7 +20,7 @@ function RowProduct({ index, product, productId, addToCart, removeFromCart }) {
             <td>
                 <div>
                     <img
-                        src={"/src/img/" + product.info.product_img}
+                        src={product.info.product_img}
                         alt={product.info.product_name}
                         style={{ width: "100px", height: "100px" }}
                     />

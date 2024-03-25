@@ -39,7 +39,7 @@ class Product extends React.Component {
             <div className="product">
                 <div className="productContent">
                     <div className="productImg">
-                        <img src={"/src/img/" + product.product_img} alt={product.product_name} />
+                        <img src={product.product_img} alt={product.product_name} />
                     </div>
                     <div className="productDetails">
                         <h2>{product.product_name}</h2>
