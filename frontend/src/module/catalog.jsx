@@ -11,7 +11,7 @@ function ProductCard({ product, onViewMore }) {
         <div className="cardProduct">
             <img className="imgProduct" src={product.product_img} alt={product.product_img} onClick={handleViewMore}/>
             <div className="cardBody">
-                <h5 className="card-title">{product.product_name}</h5>
+                <h5 className="card-title">{product.product_name.substring(0, 20)}</h5>
                 <p className="card-text">{product.product_author}</p>
                 <p className="card-text">{product.product_desc.substring(0, 50)} ...</p>
                 <p className="card-text">{product.product_price} €</p>

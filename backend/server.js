@@ -44,12 +44,12 @@ app.get('/getProductsList', (req, res) => {
     }
 
     if( author || category || search){
-         /*if(title){
+        if(title){
             partTarget = addToPartTarget('product_name',title,partTarget);
         }
         else if(search){
             partSearch = addToPartSearch('product_name',search,partSearch)
-        }*/
+        }
 
         if(author){
             partTarget = addToPartTarget('product_author',author,partTarget);
@@ -72,6 +72,9 @@ app.get('/getProductsList', (req, res) => {
             }
             sql += "(" + partSearch + ")"
         }
+    }
+    else{
+        
     }
 
     switch (sort){

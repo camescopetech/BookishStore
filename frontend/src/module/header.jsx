@@ -5,14 +5,16 @@ import "../css/header.css";
 function DivUser({ user, changeMainToConnexion, logoutUser }) {
     console.log("reload " + user);
     if (!user) {
-        return <p onClick={changeMainToConnexion} className='headerSiteName'>Connexion</p>
+
+        return <div className='headerUser'>
+            <p onClick={changeMainToConnexion} className='headerUserFun'>Connexion</p>
+        </div>
     } else {
-        return (
-            <div>
-                <p className='headerSiteName'>{user.user_name}</p>
-                <p onClick={logoutUser} className='headerSiteName'>Déconnexion</p>
-            </div>
-        );
+        return  <div className='headerUser'>
+            <p  className='headerUserFun'>{user.user_name}</p>
+            <p onClick={logoutUser}  className='headerUserFun'>Déconnexion</p>
+        </div>
+        
     }
 }
 
@@ -51,9 +53,18 @@ class Header extends React.Component {
         this.changeSearch(e.target.value);
     }
 
+    toggleLeftMenu = () => {
+        this.props.toggleLeftMenu("go");
+    }
+
     render() {
         return (
             <div className="header">
+                <div className="menuToggle" onClick={this.toggleLeftMenu}>
+                    <div className={`bar ${this.props.leftMenuVisible ? 'change1' : ''}`}></div>
+                    <div className={`bar ${this.props.leftMenuVisible ? 'change2' : ''}`}></div>
+                    <div className={`bar ${this.props.leftMenuVisible ? 'change3' : ''}`}></div>
+                </div>
                 <div className="headerSite">
                     <img src="src/img/logo.jpeg" alt="logo" className="headerLogo" onClick={() => this.changeMain(<Accueil />)}/>
                     <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
@@ -62,11 +73,11 @@ class Header extends React.Component {
                     <input type="text" value={this.state.filterText} placeholder="Recherche" onChange={this.handleFilterTextChange} className="searchInput" />
                 </div>
                 <div className="basketUserContainer">
-                    <div className="basket">
-                        <img onClick={this.changeMainToCart} src="src/img/cart.png" alt="panier" className='basketImg'></img>
-                    </div>
-                    <div className="user">
-                        <DivUser user={this.props.user} changeMainToConnexion={this.changeMainToConnexion} logoutUser={this.logoutUser} />
+                    
+                    <img onClick={this.changeMainToCart} src="src/img/cart.png" alt="panier" className='basketImg'></img>
+                    
+                    <div className="headerUser">
+                        <DivUser user={this.props.user} changeMainToConnexion={this.changeMainToConnexion} logoutUser={this.logoutUser}/>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ import Product from "./module/product";
 import Cart from "./module/cart";
 
 function App() {
+    const [leftMenuVisible, setLeftMenuVisible] = useState(false); 
     const [mainContent, setMainContent] = useState(<Accueil />);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -21,6 +22,16 @@ function App() {
     const [sort, setSort] = useState('');
     const [user, setUser] = useState('');
     const [cart, setCart] = useState({});
+
+    const toggleLeftMenu = () => {
+
+        if(leftMenuVisible){
+            setLeftMenuVisible(false);
+        }
+        else{
+            setLeftMenuVisible(true);
+        }
+    };
 
     const changeMainContent = (content) => {
         setMainContent(content);
@@ -48,7 +59,7 @@ function App() {
 
     //USER
     const changeMainToConnexion = () => {
-        changeMainContent(<Connexion changeUser={changeUser} changeMainToSignUp={changeMainToSignUp}/>);
+        changeMainContent(<Connexion changeUser={changeUser} changeMainToSignUp={changeMainToSignUp} changeMain={changeMainContent}/>);
     };
    
     const  changeMainToSignUp = () => {
@@ -63,21 +74,26 @@ function App() {
     };
     //CHANGEMAIN
     const changeMainToProduct = (product) => {
-        changeMainContent(<Product product={product} cart={cart}/>);
+        changeMainContent(<Product product={product} cart={cart} changeMain={changeMainToCatalog}/>);
     }
     const changeMainToCart = () => {
         changeMainContent(<Cart cart={cart}/>)
     }
+    const changeMainToCatalog = () => {
+        changeMainContent(<Category category={category} search={search} author={author} sort={sort} changeMain={changeMainToProduct}/>)
+    }
 
     return (
         <div className="appDiv">
-            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} logoutUser={logoutUser} changeMainToCart={changeMainToCart}/>
-            <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
+            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} 
+            logoutUser={logoutUser} changeMainToCart={changeMainToCart} leftMenuVisible={leftMenuVisible} toggleLeftMenu={toggleLeftMenu}/>
+            <div style={{ display: leftMenuVisible ? 'block' : 'none' }}>
+                <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
+            </div>
             <div className="mainContent">
                 {mainContent}
             </div>
             <Footer changeMain={changeMainContent}/>
-
         </div>
     );
 }

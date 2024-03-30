@@ -8,64 +8,86 @@
     position: relative;
     overflow: hidden; /* Pour éviter que les éléments ne dépassent les bords */
 }
-
+/*DIV*/
 .headerSite {
     display: flex;
     align-items: center;
+    margin-left: 10px;
 }
-
 .headerSiteName {
     text-decoration: none;
     color: black;
     margin-left: 10px;
 }
-
 .headerLogo {
     height: 50px;
     margin-right: 10px; /* Ajouter de l'espace à droite du logo */
 }
-
 .searchBox {
     flex-grow: 1;
     margin: 0 auto; /* Centrer la barre de recherche */
     text-align: center; /* Centrer le texte à l'intérieur de la barre de recherche */
 }
-
 .searchInput {
     width: 50%; /* Réduire la largeur de la barre de recherche à 50% */
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-
 .basketUserContainer {
     display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
     align-items: center; /* Centrer verticalement les éléments dans le conteneur */
 }
-
+/*BasketUser*/
 .basketImg {
     width: 20px;
     height: 20px;
 }
-
-.cartIcon,
-.DivUser {
-    margin-top: 10px; /* Ajouter de l'espace entre le panier et la connexion */
-}
-
-.DivUser {
+.headerUser {
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: 100%;
 }
+
+.headerUserFun {
+    margin: auto;
+    margin-left: 10px;
+}
+
+.bar {
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change1 {
+    transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+.change2 {
+    opacity: 0;
+}
+
+.change3 {
+    transform: rotate(45deg) translate(-6px, -6px);
+}
+
 
 @media only screen and (max-width: 768px) {
     .header {
-        flex-direction: row; /* Assure que les éléments restent dans une ligne */
-        justify-content: space-between; /* Distribue les éléments sur la ligne */
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
     }
 
     .headerSiteName {
-        display: none; /* Cache le nom du site sur les petits écrans */
+        display: none; 
+    }
+
+    .headerUser {
+        display: none;
     }
 }

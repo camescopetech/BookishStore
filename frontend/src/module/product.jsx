@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/product.css";
+import Category from "./catalog";
 
 class Product extends React.Component {
     constructor(props) {
@@ -32,29 +33,35 @@ class Product extends React.Component {
         }
     }
 
-  
+    changeMain = () => {
+        this.props.changeMain("go");
+    };
+
     render() {
         const product = this.props.product;
         
         return (
-            <div className="product">
-                <div className="productContent">
-                    <div className="productImg">
-                        <img src={product.product_img} alt={product.product_name} />
-                    </div>
-                    <div className="productDetails">
-                        <h2>{product.product_name}</h2>
-                        <p><strong>Auteur:</strong> {product.product_author}</p>
-                        <p><strong>Prix:</strong> {product.product_price} €</p>
-                        <p><strong>Catégorie:</strong> {product.product_category}</p>
-                        <p><strong>Stock:</strong> {product.product_stock}</p>
-                        <p><strong>Description:</strong> {product.product_desc}</p>
-                        <div className="quantityControl">
-                            <button onClick={this.removeFromCart} className="cartButton">-</button>
-                            <span>   </span>
-                            <span className="quantity">{this.state.nElement}</span>
-                            <span>   </span>
-                            <button onClick={this.addToCart} className="cartButton">+</button>
+            <div>
+                <p onClick={this.changeMain}>&lt;---</p>
+                <div className="product">
+                    <div className="productContent">
+                        <div className="productImg">
+                            <img src={product.product_img} alt={product.product_name} />
+                        </div>
+                        <div className="productDetails">
+                            <h2>{product.product_name}</h2>
+                            <p><strong>Auteur:</strong> {product.product_author}</p>
+                            <p><strong>Prix:</strong> {product.product_price} €</p>
+                            <p><strong>Catégorie:</strong> {product.product_category}</p>
+                            <p><strong>Stock:</strong> {product.product_stock}</p>
+                            <p><strong>Description:</strong> {product.product_desc}</p>
+                            <div className="quantityControl">
+                                <button onClick={this.removeFromCart} className="cartButton">-</button>
+                                <span>   </span>
+                                <span className="quantity">{this.state.nElement}</span>
+                                <span>   </span>
+                                <button onClick={this.addToCart} className="cartButton">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>

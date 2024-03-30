@@ -38,6 +38,18 @@ body {
     color: black;
 }
 
+.leftMenuHide{
+    display: none;
+}
+
+.menuToggle {
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+
+
 /* Main Content */
 .mainContent {
     background-color: var(--color0);
@@ -55,6 +67,8 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
 
 .footerAbout {
     color: var(--color0);
@@ -91,10 +105,6 @@ body {
 
     .headerNavBar {
         margin: 10px 0;
-    }
-
-    .leftMenu {
-        display: none;
     }
 
     .mainContent {
