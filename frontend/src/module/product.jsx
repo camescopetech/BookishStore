@@ -6,7 +6,7 @@ class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            nElement: this.props.cart[this.props.product.id_product] ?  this.props.cart[this.props.product.id_product].nElement : 0
+            nElement: this.props.cart[this.props.product.id_product] ?  this.props.cart[this.props.product.id_product].nElement : 0,
         };
         this.addToCart = this.addToCart.bind(this);
         this.removeFromCart = this.removeFromCart.bind(this);
@@ -34,7 +34,7 @@ class Product extends React.Component {
     }
 
     changeMain = () => {
-        this.props.changeMain("go");
+        this.props.changeMain(this.props.filterCategory,this.props.search,this.props.filterAuthor,this.props.filterSort);
     };
 
     render() {

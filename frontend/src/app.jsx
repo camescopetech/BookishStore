@@ -34,6 +34,7 @@ function App() {
     };
 
     const changeMainContent = (content) => {
+        console.log(author + " / " + category + " / " + search)
         setMainContent(content);
     };
 
@@ -73,13 +74,13 @@ function App() {
         setUser('');
     };
     //CHANGEMAIN
-    const changeMainToProduct = (product) => {
-        changeMainContent(<Product product={product} cart={cart} changeMain={changeMainToCatalog}/>);
+    const changeMainToProduct = (product,filterCategory,search,filterAuthor,filterSort) => {
+        changeMainContent(<Product product={product} cart={cart} changeMain={changeMainToCatalog} filterCategory={filterCategory} search={search} filterAuthor={filterAuthor} filterSort={filterSort}/>);
     }
     const changeMainToCart = () => {
         changeMainContent(<Cart cart={cart}/>)
     }
-    const changeMainToCatalog = () => {
+    const changeMainToCatalog = (category,search,author,sort) => {
         changeMainContent(<Category category={category} search={search} author={author} sort={sort} changeMain={changeMainToProduct}/>)
     }
 

@@ -94,7 +94,7 @@ function ProductTable({ category, search, author, sort, onViewMore }) {
 class Category extends React.Component {
     changeMain = (product) => {
        // this.props.changeMain(<Product product={product}/>);
-        this.props.changeMain(product);
+        this.props.changeMain(product,this.props.category,this.props.search,this.props.author,this.props.sort);
     };
 
     render() {
