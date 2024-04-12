@@ -34,7 +34,7 @@ class Product extends React.Component {
     }
 
     changeMain = () => {
-        this.props.changeMain(this.props.filterCategory,this.props.search,this.props.filterAuthor,this.props.filterSort);
+        this.props.changeMain(this.props.userFilter);
     };
 
     render() {
@@ -46,7 +46,9 @@ class Product extends React.Component {
                 <div className="product">
                     <div className="productContent">
                         <div className="productImg">
-                            <img src={product.product_img} alt={product.product_name} />
+                            <a href={product.product_img} target="_blank">
+                                <img src={product.product_img} alt={product.product_name} />
+                            </a>  
                         </div>
                         <div className="productDetails">
                             <h2>{product.product_name}</h2>

@@ -34,7 +34,6 @@ function App() {
     };
 
     const changeMainContent = (content) => {
-        console.log(author + " / " + category + " / " + search)
         setMainContent(content);
     };
 
@@ -74,20 +73,26 @@ function App() {
         setUser('');
     };
     //CHANGEMAIN
-    const changeMainToProduct = (product,filterCategory,search,filterAuthor,filterSort) => {
-        changeMainContent(<Product product={product} cart={cart} changeMain={changeMainToCatalog} filterCategory={filterCategory} search={search} filterAuthor={filterAuthor} filterSort={filterSort}/>);
+    const changeMainToProduct = (product,userFilter) => {
+        changeMainContent(<Product product={product} cart={cart} changeMain={changeProductToCatalog} userFilter={userFilter}/>);
     }
     const changeMainToCart = () => {
-        changeMainContent(<Cart cart={cart}/>)
+        changeMainContent(<Cart cart={cart}/>);
     }
-    const changeMainToCatalog = (category,search,author,sort) => {
-        changeMainContent(<Category category={category} search={search} author={author} sort={sort} changeMain={changeMainToProduct}/>)
+    const changeProductToCatalog = (userFilter) => {
+        const userFilterJson = JSON.parse(userFilter);
+        changeMainContent(<Category category={userFilterJson.category} search={userFilterJson.search} author={userFilterJson.author} sort={userFilterJson.sort} changeMain={changeMainToProduct}/>)
+    }
+    const goToCatalog = () => {
+        changeMainContent(<Category category={category} search={search} author={author} sort={sort} changeMain={changeMainToProduct}/>);
     }
 
     return (
         <div className="appDiv">
             <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} 
-            logoutUser={logoutUser} changeMainToCart={changeMainToCart} leftMenuVisible={leftMenuVisible} toggleLeftMenu={toggleLeftMenu}/>
+            logoutUser={logoutUser} changeMainToCart={changeMainToCart} leftMenuVisible={leftMenuVisible} toggleLeftMenu={toggleLeftMenu}
+            goToCatalog={goToCatalog}
+            />
             <div style={{ display: leftMenuVisible ? 'block' : 'none' }}>
                 <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
             </div>

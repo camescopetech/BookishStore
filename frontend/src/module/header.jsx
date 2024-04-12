@@ -48,6 +48,10 @@ class Header extends React.Component {
         this.props.logoutUser("logoutUser");
     };
 
+    goToCatalog = () => {
+        this.props.goToCatalog();
+    }
+
     handleFilterTextChange(e) {
         this.setState({ filterText: e.target.value });
         this.changeSearch(e.target.value);
@@ -70,6 +74,7 @@ class Header extends React.Component {
                     <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
                 </div>
                 <div className="searchBox">
+                    <img onClick={this.goToCatalog} src="src/img/loupe.png" alt="recherche" className='basketImg'/>
                     <input type="text" value={this.state.filterText} placeholder="Recherche" onChange={this.handleFilterTextChange} className="searchInput" />
                 </div>
                 <div className="basketUserContainer">

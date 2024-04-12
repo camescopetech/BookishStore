@@ -9,7 +9,7 @@ function ProductCard({ product, onViewMore }) {
 
     return (
         <div className="cardProduct">
-            <img className="imgProduct" src={product.product_img} alt={product.product_img} onClick={handleViewMore}/>
+            <img className="imgProduct" src={product.product_img} alt={product.product_img}/>
             <div className="cardBody">
                 <h5 className="card-title">{product.product_name.substring(0, 20)}</h5>
                 <p className="card-text">{product.product_author}</p>
@@ -93,8 +93,14 @@ function ProductTable({ category, search, author, sort, onViewMore }) {
 
 class Category extends React.Component {
     changeMain = (product) => {
-       // this.props.changeMain(<Product product={product}/>);
-        this.props.changeMain(product,this.props.category,this.props.search,this.props.author,this.props.sort);
+        const userFilterJson = {
+            category: this.props.category,
+            search: this.props.search,
+            author: this.props.author,
+            sort: this.props.sort
+        }
+        const userFilter = JSON.stringify(userFilterJson)
+        this.props.changeMain(product, userFilter);
     };
 
     render() {

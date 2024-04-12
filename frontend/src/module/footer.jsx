@@ -13,7 +13,7 @@ class Footer extends React.Component{
                 <img src="src/img/logo.jpeg" alt="logo" className="footerLogo" />
                 <p className="footerAbout">
                     <strong>A Propos</strong>
-                    <a href="#" className="nav-link" onClick={() => this.changeMain(<Contact/>)}>Contactez nous</a>
+                    <a href="#" className="nav-link" onClick={() => this.changeMain(<Contact changeMain={this.props.changeMain}/>)}>Contactez nous</a>
                 </p>
             </div>
         );

@@ -22,13 +22,26 @@ CREATE TABLE bookish_user (
     PRIMARY KEY(id_user)
 );
 
+CREATE TABLE bookish_contact (
+    id_contact INT AUTO_INCREMENT,
+    contact_date DATE,
+    contact_name VARCHAR(30),
+    contact_surname VARCHAR(30),
+    contact_email VARCHAR(50),
+    contact_gender VARCHAR(10),
+    contact_birthday DATE,
+    contact_function VARCHAR(10),
+    contact_subject VARCHAR(30),
+    contact_content TEXT,
+    PRIMARY KEY (id_contact)
+);
+
 INSERT INTO bookish_product (product_name, product_author, product_price, product_category, product_stock, product_desc, product_img)
 VALUES
 ('1984', 'George Orwell', 9.99, 'Science Fiction', 50, 'A dystopian novel set in Airstrip One, a province of the superstate Oceania, in a world of perpetual war, omnipresent government surveillance, and public manipulation.', 'http://books.google.com/books/content?id=kotPYEqx7kMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
 ('Animal Farm', 'George Orwell', 7.99, 'Fiction', 75, 'A satirical allegory of the Russian Revolution where all animals are equal, but some animals are more equal than others.', 'http://books.google.com/books/content?id=UKvYEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
 ('The Great Gatsby', 'F. Scott Fitzgerald', 15.99, 'Novel', 30, 'A novel set in the Jazz Age that follows a cast of characters living in the fictional town of West Egg on prosperous Long Island in the summer of 1922.', 'http://books.google.com/books/content?id=iXn5U2IzVH0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
-('The Catcher in the Rye', 'J.D. Salinger', -1.0, 'Novel', 100, 'A novel that follows the main character, Holden Caulfield, and his mental breakdown following his expulsion frnjustice and the destruction of innocence, it also offers critical commentary on gender roles in the American South.', 'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),om Pencey Prep.', 'http://books.google.com/books/content?id=m3GzoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'),
-('To Kill a Mockingbird', 'Harper Lee', 0.0, 'Novel', 20, 'A novel of racial i
+('The Catcher in the Rye', 'J.D. Salinger', -1.0, 'Novel', 100, 'A novel that follows the main character, Holden Caulfield, and his mental breakdown following his expulsion frnjustice and the destruction of innocence, it also offers critical commentary on gender roles in the American South.', 'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
 ('The Shining', 'Stephen King', 12.99, 'Horror', 80, 'A horror novel about a family that heads to an isolated hotel for the winter where an evil spiritual presence influences the father into violence, while his psychic son sees horrific forebodings from the past and of the future.', 'http://books.google.com/books/content?id=8VnJLu3AvvQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
 ('The Stand', 'Stephen King', 25.99, 'Horror', 40, 'A post-apocalyptic horror/fantasy novel where the few survivors of a devastating super-flu pandemic struggle to reestablish civilization while battling an evil force.', 'http://books.google.com/books/content?id=UbfnTcmkaKkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
 ('Pride and Prejudice', 'Jane Austen', 8.99, 'Romance', 60, 'A romantic novel that follows the main character, Elizabeth Bennet, as she deals with issues of manners, upbringing, morality, education, and marriage in the society of the landed gentry of the British Regency.', 'http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
@@ -80,4 +93,5 @@ VALUES
 
 INSERT INTO bookish_user (user_name,user_email,user_password) VALUES
 ('Azek','azek@gmail.com','sasa');
+
     
