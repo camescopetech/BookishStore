@@ -26,6 +26,7 @@ class Header extends React.Component {
             filterText: ''
         };
         this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     changeMain = (balise) => {
@@ -40,10 +41,6 @@ class Header extends React.Component {
         this.props.changeMainToCart("changeMainToCart");
     };
 
-    changeSearch = (search) => {
-        this.props.changeSearch(search);
-    };
-
     logoutUser = () => {
         this.props.logoutUser("logoutUser");
     };
@@ -54,7 +51,15 @@ class Header extends React.Component {
 
     handleFilterTextChange(e) {
         this.setState({ filterText: e.target.value });
-        this.changeSearch(e.target.value);
+       
+    }
+
+    handleKeyDown(e){
+        if(e.key == "Enter"){
+            console.log("ENTER");
+            this.props.changeSearch(this.state.filterText);
+        }
+
     }
 
     toggleLeftMenu = () => {
@@ -75,7 +80,7 @@ class Header extends React.Component {
                 </div>
                 <div className="searchBox">
                     <img onClick={this.goToCatalog} src="src/img/loupe.png" alt="recherche" className='basketImg'/>
-                    <input type="text" value={this.state.filterText} placeholder="Recherche" onChange={this.handleFilterTextChange} className="searchInput" />
+                    <input type="text" value={this.state.filterText} placeholder="Recherche" onChange={this.handleFilterTextChange} onKeyDown={this.handleKeyDown} className="searchInput" />
                 </div>
                 <div className="basketUserContainer">
                     

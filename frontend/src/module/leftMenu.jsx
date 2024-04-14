@@ -85,12 +85,10 @@ class LeftMenu extends React.Component {
         return (
             <div className="leftMenu">
                 
-                <ul>
-                    <li><ElementFilterList onChange={this.changeAuthor} type="product_author" nameList="Auteur"/></li>
-                    <li><ElementFilterList onChange={this.changeCategory} type="product_category" nameList="Genre"/></li>
-                    <li><SortFilterList onChange={this.changeSort} nameList="Trie"/></li>
-                </ul>
-                
+                <ElementFilterList onChange={this.changeCategory} type="product_category" nameList="Genre"/>
+                <ElementFilterList onChange={this.changeAuthor} type="product_author" nameList="Auteur"/>
+                <SortFilterList onChange={this.changeSort} nameList="Trie"/>
+                  
             </div>
         );
     }

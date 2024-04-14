@@ -24,16 +24,34 @@ function ProductCard({ product, onViewMore }) {
 }
 
 function DisplayProduct({ products, onViewMore }) {
+    const chunkSize = 3;
+    const productChunks = [];
+
+    for (let i = 0; i < products.length; i += chunkSize) {
+        productChunks.push(products.slice(i, i + chunkSize));
+    }
+
     return (
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 productCards">
-            {products.map((product, index) => (
-                <div key={index} className="col mb-4 productItem">
-                    <ProductCard product={product} onViewMore={onViewMore} />
-                </div>
-            ))}
+        <div className="ProducTable">
+            <table>
+                <tbody>
+                    {productChunks.map((chunk, index) => (
+                        <tr key={index}>
+                            {chunk.length === 1 && <td></td>}
+                            {chunk.map((product, index) => (
+                                <td key={index}>
+                                        <ProductCard product={product} onViewMore={onViewMore} />
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }
+
+
 
 function ProductTable({ category, search, author, sort, onViewMore }) {
     const [data, setData] = useState([]);
@@ -67,15 +85,12 @@ function ProductTable({ category, search, author, sort, onViewMore }) {
             ) : (
                 <div className="full">
                  
-                    <div className="productTableContainer">
-                        <div className="productTable"> 
-                            <DisplayProduct
-                                products={data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
-                                onViewMore={onViewMore} 
-                            />
-                        </div>
-                    </div>
 
+                    <DisplayProduct
+                        products={data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
+                        onViewMore={onViewMore} 
+                    />
+                    
                     <div className="arrow">
                         {currentPage > 0 && (
                             <button onClick={handlePrevPage} className="arrowButton">&lt;</button>
