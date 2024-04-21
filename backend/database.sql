@@ -36,6 +36,18 @@ CREATE TABLE bookish_contact (
     PRIMARY KEY (id_contact)
 );
 
+CREATE TABLE bookish_payment (
+    id_payment INT AUTO_INCREMENT,
+    id_user INT,
+    payment_date VARCHAR(50),
+    payment_adresse VARCHAR(50),
+    payment_city VARCHAR(50),
+    payment_code VARCHAR(50),
+    payment_total INT,
+    payment_cart TEXT,
+    PRIMARY KEY (id_payment)
+);
+
 INSERT INTO bookish_product (product_name, product_author, product_price, product_category, product_stock, product_desc, product_img)
 VALUES
 ('1984', 'George Orwell', 9.99, 'Science Fiction', 50, 'A dystopian novel set in Airstrip One, a province of the superstate Oceania, in a world of perpetual war, omnipresent government surveillance, and public manipulation.', 'http://books.google.com/books/content?id=kotPYEqx7kMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),

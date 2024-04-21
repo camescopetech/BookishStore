@@ -29,10 +29,11 @@
     text-align: center; /* Centrer le texte à l'intérieur de la barre de recherche */
 }
 .searchInput {
-    width: 50%; /* Réduire la largeur de la barre de recherche à 50% */
+    width: 25%; /* Réduire la largeur de la barre de recherche à 50% */
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-left: 20px;
 }
 .basketUserContainer {
     display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */

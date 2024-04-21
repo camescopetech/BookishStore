@@ -1,0 +1,34 @@
+.imgProduct{
+    margin: 5px;
+}
+
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+.table{
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.column{
+    margin: auto;
+}
+
+.test{
+
+
+    text-align: center;
+
+    
+    
+
+    width: 100%;
+
+    align-self: flex-start;
+   
+}

@@ -11,6 +11,7 @@ import Connexion from "./module/connexion";
 import SignUpForm from "./module/signUpForm";
 import Product from "./module/product";
 import Cart from "./module/cart";
+import Payment from "./module/Payment";
 
 function App() {
     const [leftMenuVisible, setLeftMenuVisible] = useState(false); 
@@ -57,14 +58,7 @@ function App() {
         changeMainContent(<Category category={category} search={search} author={author} sort={newSort} changeMain={changeMainToProduct}/>)
     };
 
-    //USER
-    const changeMainToConnexion = () => {
-        changeMainContent(<Connexion changeUser={changeUser} changeMainToSignUp={changeMainToSignUp} changeMain={changeMainContent}/>);
-    };
-   
-    const  changeMainToSignUp = () => {
-        changeMainContent(<SignUpForm changeMainToConnexion={changeMainToConnexion}/>);
-    };
+    //user
     const changeUser = (newUser) => {
         changeMainContent(<Accueil/>);
         setUser(newUser);
@@ -72,12 +66,19 @@ function App() {
     const logoutUser = () => {
         setUser('');
     };
-    //CHANGEMAIN
+
+    //Page
+    const changeMainToConnexion = () => {
+        changeMainContent(<Connexion changeUser={changeUser} changeMainToSignUp={changeMainToSignUp} changeMain={changeMainContent}/>);
+    };
+    const  changeMainToSignUp = () => {
+        changeMainContent(<SignUpForm changeMainToConnexion={changeMainToConnexion}/>);
+    };
     const changeMainToProduct = (product,userFilter) => {
         changeMainContent(<Product product={product} cart={cart} changeMain={changeProductToCatalog} userFilter={userFilter}/>);
     }
     const changeMainToCart = () => {
-        changeMainContent(<Cart cart={cart}/>);
+        changeMainContent(<Cart cart={cart} changeMainToProduct={changeMainToProduct}  changeMainToConnexion={changeMainToConnexion} changeMainToPayment={changeMainToPayment} user={user}/>);
     }
     const changeProductToCatalog = (userFilter) => {
         const userFilterJson = JSON.parse(userFilter);
@@ -85,6 +86,14 @@ function App() {
     }
     const goToCatalog = () => {
         changeMainContent(<Category category={category} search={search} author={author} sort={sort} changeMain={changeMainToProduct}/>);
+    }
+    const changeMainToPayment = () => {
+        changeMainContent(<Payment user={user} cart={cart} paymentMade={paymentMade}/>)
+    }
+
+    const paymentMade = () => {
+        setCart({});
+        setMainContent(<Accueil/>);
     }
 
     return (

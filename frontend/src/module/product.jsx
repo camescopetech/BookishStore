@@ -42,7 +42,9 @@ class Product extends React.Component {
         
         return (
             <div>
+              {this.props.userFilter && (
                 <p onClick={this.changeMain}>&lt;---</p>
+            )}
                 <div className="product">
                     <div className="productContent">
                         <div className="productImg">

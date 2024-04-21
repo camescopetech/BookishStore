@@ -49,7 +49,7 @@ class Connexion extends React.Component {
     };
 
     changeMainToSignUp = (event) => {
-       this.props. changeMainToSignUp(" changeMainToSignUp");
+       this.props.changeMainToSignUp(" changeMainToSignUp");
     }
 
     render() {
