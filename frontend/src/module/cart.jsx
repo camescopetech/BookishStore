@@ -28,23 +28,23 @@ function RowProduct({ index, product, productId, addToCart, removeFromCart, onVi
     }
 
     return (
-        <tr key={index} className="table">
+        <tr key={index}>
             <td>
                 
                 <img 
                     src={product.info.product_img}
                     alt={product.info.product_name}
                     style={{ width: "100px", height: "100px" }}
-                    className="imgProduct"
+                    className="cartImgProduct"
                     onClick={handleViewMore}
                 />
                 
             </td>
             <td>
-                <div className="column">
-                    <button onClick={removeFromCartFront}>-</button>
+                <div className="cartColumn">
+                    <button onClick={removeFromCartFront} className="cartBtn">-</button>
                     <span>{nElement}</span>
-                    <button onClick={addToCartFront}>+</button>       
+                    <button onClick={addToCartFront} className="cartBtn">+</button>       
                     <br></br>
                     <br></br>
                     <span>Stock : {product.info.product_stock}</span>
@@ -128,7 +128,15 @@ class Cart extends React.Component {
             
             <div className="test">
                 <h1>Contenu du panier</h1>
-                <table >
+                <table className="tableau">
+                    <thead>
+                        <tr>
+                            <th>Livre</th>
+                            <th>Nombre</th>
+                            <th>Prix</th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     <tbody> 
                         {Object.keys(this.props.cart).map((productId, index) => (
                             this.props.cart[productId].nElement > 0

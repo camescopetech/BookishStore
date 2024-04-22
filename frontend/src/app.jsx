@@ -15,7 +15,7 @@ import Payment from "./module/Payment";
 
 function App() {
     const [leftMenuVisible, setLeftMenuVisible] = useState(false); 
-    const [mainContent, setMainContent] = useState(<Accueil />);
+    const [mainContent, setMainContent] = useState('');
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [category, setCategory] = useState('');
@@ -90,23 +90,27 @@ function App() {
     const changeMainToPayment = () => {
         changeMainContent(<Payment user={user} cart={cart} paymentMade={paymentMade}/>)
     }
+    const changeMainToAccueil = () => {
+        changeMainContent(<Accueil handleViewMore={changeMainToProduct}/>);
+    }
 
     const paymentMade = () => {
         setCart({});
-        setMainContent(<Accueil/>);
+        setMainToAccueil();
     }
 
+   
     return (
         <div className="appDiv">
-            <Header changeMain={changeMainContent} changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} 
+            <Header changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} 
             logoutUser={logoutUser} changeMainToCart={changeMainToCart} leftMenuVisible={leftMenuVisible} toggleLeftMenu={toggleLeftMenu}
-            goToCatalog={goToCatalog}
+            goToCatalog={goToCatalog} changeMainToAccueil={changeMainToAccueil}
             />
             <div style={{ display: leftMenuVisible ? 'block' : 'none' }}>
                 <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
             </div>
             <div className="mainContent">
-                {mainContent}
+                {mainContent ? mainContent : <Accueil handleViewMore={changeMainToProduct}/>}
             </div>
             <Footer changeMain={changeMainContent}/>
         </div>

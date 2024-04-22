@@ -109,7 +109,8 @@ body {
 
     .mainContent {
         height: auto;
-        min-height: calc(90vh - 10vh); /* Ajout d'une hauteur minimale pour s'assurer que le contenu est visible */
+        min-height: calc(90vh - 10vh); 
+        position: relative;
     }
 
     .footer {
@@ -117,5 +118,15 @@ body {
         align-items: center;
     }
 
-    
+    .leftMenu {
+        min-height: calc(90vh - 10vh);
+        width: 80%;
+        position: absolute;
+        float:left; 
+        z-index:100;
+        filter:alpha(opacity=75); /* opacite pour FF */ 
+        -moz-opacity:0.75; /* opacite pour FF */ 
+        opacity: 0.75; /* opacite pour IE */
+
+    }
 }

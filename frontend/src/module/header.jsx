@@ -41,6 +41,10 @@ class Header extends React.Component {
         this.props.changeMainToCart("changeMainToCart");
     };
 
+    changeMainToAccueil = () => {
+        this.props.changeMainToAccueil();
+    }
+
     logoutUser = () => {
         this.props.logoutUser("logoutUser");
     };
@@ -75,8 +79,8 @@ class Header extends React.Component {
                     <div className={`bar ${this.props.leftMenuVisible ? 'change3' : ''}`}></div>
                 </div>
                 <div className="headerSite">
-                    <img src="src/img/logo.jpeg" alt="logo" className="headerLogo" onClick={() => this.changeMain(<Accueil />)}/>
-                    <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
+                    <img src="src/img/logo.jpeg" alt="logo" className="headerLogo" onClick={this.changeMainToAccueil}/>
+                    <a href="#" className='headerSiteName' onClick={this.changeMainToAccueil}><h1>BookishStore</h1></a>
                 </div>
                 <div className="searchBox">
                     <img onClick={this.goToCatalog} src="src/img/loupe.png" alt="recherche" className='loupeImg'/>

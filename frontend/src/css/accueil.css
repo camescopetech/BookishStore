@@ -12,6 +12,13 @@
     height: 20px;
 }
 
+.accueilDiv{
+    text-align: center;
+}
+
+.accueilTitre{
+    margin-bottom: 30px;
+}
 /* Media Queries pour la responsivité */
 @media only screen and (max-width: 768px) {
     .imgAccueil{

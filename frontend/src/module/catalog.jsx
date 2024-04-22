@@ -9,7 +9,7 @@ function ProductCard({ product, onViewMore }) {
 
     return (
         <div className="cardProduct">
-            <img className="imgProduct" src={product.product_img} alt={product.product_img}/>
+            <img className="imgProduct" src={product.product_img} alt={product.product_img} onClick={handleViewMore}/>
             <div className="cardBody">
                 <h5 className="card-title">{product.product_name.substring(0, 20)}</h5>
                 <p className="card-text">{product.product_author}</p>
@@ -37,7 +37,10 @@ function DisplayProduct({ products, onViewMore }) {
                 <tbody>
                     {productChunks.map((chunk, index) => (
                         <tr key={index}>
-                            {chunk.length == 1 && <td> &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;</td>}
+                            {(chunk.length == 1 && index == 0) &&
+                            <td> &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;</td>}
+                            {(chunk.length == 1 && index > 0) && <td></td>}
+
                             {chunk.map((product, index) => (
                                 <td key={index}>
                                         <ProductCard product={product} onViewMore={onViewMore} />
