@@ -12,7 +12,7 @@
 .headerSite {
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 .headerSiteName {
     text-decoration: none;
@@ -20,13 +20,11 @@
     margin-left: 10px;
 }
 .headerLogo {
-    height: 50px;
-    margin-right: 10px; /* Ajouter de l'espace à droite du logo */
+    height: 40px;
 }
 .searchBox {
     flex-grow: 1;
     margin: 0 auto; /* Centrer la barre de recherche */
-    text-align: center; /* Centrer le texte à l'intérieur de la barre de recherche */
 }
 .searchInput {
     width: 25%; /* Réduire la largeur de la barre de recherche à 50% */
@@ -49,6 +47,11 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+}
+.loupeImg{
+    width: 20px;
+    height: 20px;
+    margin-left: 20%;
 }
 
 .headerUserFun {

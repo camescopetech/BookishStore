@@ -79,7 +79,7 @@ class Header extends React.Component {
                     <a href="#" className='headerSiteName' onClick={() => this.changeMain(<Accueil />)}><h1>BookishStore</h1></a>
                 </div>
                 <div className="searchBox">
-                    <img onClick={this.goToCatalog} src="src/img/loupe.png" alt="recherche" className='basketImg'/>
+                    <img onClick={this.goToCatalog} src="src/img/loupe.png" alt="recherche" className='loupeImg'/>
                     <input type="text" value={this.state.filterText} placeholder="Recherche" onChange={this.handleFilterTextChange} onKeyDown={this.handleKeyDown} className="searchInput" />
                 </div>
                 <div className="basketUserContainer">

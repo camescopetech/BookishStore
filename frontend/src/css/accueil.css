@@ -1,0 +1,23 @@
+.imgAccueil{
+    height: 350px;
+}
+.imgSwap{
+    height: 300px;
+    opacity: 30%;
+    transform: rotate(+15deg);
+}
+
+.arrow{
+    margin: 10px;
+    height: 20px;
+}
+
+/* Media Queries pour la responsivité */
+@media only screen and (max-width: 768px) {
+    .imgAccueil{
+        height: 350px;
+    }
+    .imgSwap{
+        display: none;
+    }
+}

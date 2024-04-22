@@ -128,15 +128,8 @@ class Cart extends React.Component {
             
             <div className="test">
                 <h1>Contenu du panier</h1>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Produit</th>
-                            <th>Quantité</th>
-                            <th>Prix</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <table >
+                    <tbody> 
                         {Object.keys(this.props.cart).map((productId, index) => (
                             this.props.cart[productId].nElement > 0
                             &&

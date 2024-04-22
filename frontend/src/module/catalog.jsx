@@ -37,7 +37,7 @@ function DisplayProduct({ products, onViewMore }) {
                 <tbody>
                     {productChunks.map((chunk, index) => (
                         <tr key={index}>
-                            {chunk.length === 1 && <td></td>}
+                            {chunk.length == 1 && <td> &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp; &emsp;</td>}
                             {chunk.map((product, index) => (
                                 <td key={index}>
                                         <ProductCard product={product} onViewMore={onViewMore} />
