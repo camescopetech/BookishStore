@@ -60,9 +60,20 @@ function App() {
 
     //user
     const changeUser = (newUser) => {
-        changeMainContent(<Accueil handleViewMore={changeMainToProduct}/>);
+    
         setUser(newUser);
+        changeMainContent(<Accueil handleViewMore={
+            (product,userFilter) => {
+            console.log("AppUser: " + newUser.user_name);
+        
+            changeMainContent(<Product product={product} cart={cart} changeMain={changeProductToCatalog} userFilter={userFilter} user={newUser}/>)
+            }
+        }
+        />);
+        
     };
+    
+    
     const logoutUser = () => {
         setUser('');
     };
@@ -75,9 +86,11 @@ function App() {
         changeMainContent(<SignUpForm changeMainToConnexion={changeMainToConnexion}/>);
     };
     const changeMainToProduct = (product,userFilter) => {
-        changeMainContent(<Product product={product} cart={cart} changeMain={changeProductToCatalog} userFilter={userFilter}/>);
+        console.log("AppUser: " + user.user_name);
+        changeMainContent(<Product product={product} cart={cart} changeMain={changeProductToCatalog} userFilter={userFilter} user={user}/>);
     }
     const changeMainToCart = () => {
+        console.log("AppUser: " + user.user_name);
         changeMainContent(<Cart cart={cart} changeMainToProduct={changeMainToProduct}  changeMainToConnexion={changeMainToConnexion} changeMainToPayment={changeMainToPayment} user={user}/>);
     }
     const changeProductToCatalog = (userFilter) => {

@@ -87,8 +87,8 @@ class Header extends React.Component {
                     <input type="text" value={this.state.filterText} placeholder="Recherche" onChange={this.handleFilterTextChange} onKeyDown={this.handleKeyDown} className="searchInput" />
                 </div>
                 <div className="basketUserContainer">
-                    
-                    <img onClick={this.changeMainToCart} src="src/img/cart.png" alt="panier" className='basketImg'></img>
+
+                    {this.props.user.user_name != 'Admin' && <img onClick={this.changeMainToCart} src="src/img/cart.png" alt="panier" className='basketImg'></img>} 
                     
                     <div className="headerUser">
                         <DivUser user={this.props.user} changeMainToConnexion={this.changeMainToConnexion} logoutUser={this.logoutUser}/>
