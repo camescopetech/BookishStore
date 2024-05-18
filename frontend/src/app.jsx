@@ -12,6 +12,7 @@ import SignUpForm from "./module/signUpForm";
 import Product from "./module/product";
 import Cart from "./module/cart";
 import Payment from "./module/Payment";
+import AddProduct from "./module/addProduct";
 
 function App() {
     const [leftMenuVisible, setLeftMenuVisible] = useState(false); 
@@ -107,6 +108,10 @@ function App() {
         changeMainContent(<Accueil handleViewMore={changeMainToProduct}/>);
     }
 
+    const changeMainToAdd = () => {
+        changeMainContent(<AddProduct changeMainToAccueil={changeMainToAccueil}/>);
+    }
+
     const paymentMade = () => {
         setCart({});
         changeMainContent(<Accueil handleViewMore={changeMainToProduct}/>);
@@ -117,7 +122,7 @@ function App() {
         <div className="appDiv">
             <Header changeSearch={changeSearch} changeMainToConnexion={changeMainToConnexion} user={user} 
             logoutUser={logoutUser} changeMainToCart={changeMainToCart} leftMenuVisible={leftMenuVisible} toggleLeftMenu={toggleLeftMenu}
-            goToCatalog={goToCatalog} changeMainToAccueil={changeMainToAccueil}
+            goToCatalog={goToCatalog} changeMainToAccueil={changeMainToAccueil}  changeMainToAdd={ changeMainToAdd}
             />
             <div style={{ display: leftMenuVisible ? 'block' : 'none' }}>
                 <LeftMenu changeCategory={changeCategory} changeAuthor={changeAuthor} changeSort={changeSort}/>
