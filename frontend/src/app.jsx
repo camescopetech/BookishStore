@@ -60,7 +60,7 @@ function App() {
 
     //user
     const changeUser = (newUser) => {
-        changeMainContent(<Accueil/>);
+        changeMainContent(<Accueil handleViewMore={changeMainToProduct}/>);
         setUser(newUser);
     };
     const logoutUser = () => {
@@ -96,7 +96,7 @@ function App() {
 
     const paymentMade = () => {
         setCart({});
-        setMainToAccueil();
+        changeMainContent(<Accueil handleViewMore={changeMainToProduct}/>);
     }
 
    

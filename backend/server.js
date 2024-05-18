@@ -211,13 +211,50 @@ app.get('/insertPayment', (req, res) => {
     + "VALUES (" + user + ",'" + dateStr +"','" + adresse + "','" + city +"','" + code + "'," + total + ",'" + cart + "')";
     db.query(sqlInsert, [], (err, result) => {
         if (err) {
-            return res.status(500).json({ error: 'Internal server error caca' });
+            return res.status(500).json({ error: 'Internal server error' });
         }
         res.json({ success: true, message: 'Contact etblished successfully' });
     });
     
 });
 
+app.get('/getProduct', (req, res) => {
+
+    var { id } = req.query;
+    
+    var sql = "SELECT * FROM bookish_product WHERE id_product = ?"
+
+    console.log(sql);
+    db.query(sql, [id], (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (data.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        return res.json(data);
+    });
+   
+});
+
+app.get('/getProductStock', (req, res) => {
+
+    var { id } = req.query;
+    
+    var sql = "SELECT product_stock FROM bookish_product WHERE id_product = ?"
+
+    console.log(sql);
+    db.query(sql, [id], (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (data.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        return res.json(data);
+    });
+   
+});
 
 app.listen(8081, () => {
     console.log("listening");
